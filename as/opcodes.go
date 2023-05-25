@@ -49,9 +49,10 @@ const (
 	PUSH30 = 0x7d
 	PUSH31 = 0x7e
 	PUSH32 = 0x7f
+	RETURN = 0xf3
 )
 
-var OpcodeStrings = map[string]byte {
+var OpcodeStrings = map[string]Opcode {
 	"STOP":    STOP,
 	"ADD":     ADD,
 	"MUL":     MUL,
@@ -66,6 +67,7 @@ var OpcodeStrings = map[string]byte {
 	"MLOAD":   MLOAD,
 	"MSTORE":  MSTORE,
 	"MSTORE8": MSTORE8,
+	"PUSH":    PUSH1,
 	"PUSH1":   PUSH1,
 	"PUSH2":   PUSH2,
 	"PUSH3":   PUSH3,
@@ -98,4 +100,14 @@ var OpcodeStrings = map[string]byte {
 	"PUSH30":   PUSH30,
 	"PUSH31":   PUSH31,
 	"PUSH32":   PUSH32,
+	"RETURN":   RETURN,
+}
+
+// returns 0 if not push, otherwise returns number of bytes
+func (o *Opcode) IsPush() byte {
+	d := *o - PUSH1 
+	if d >= 0 && d < 31 {
+		return byte(d) + 1
+	}
+	return 0
 }

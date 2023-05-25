@@ -49,9 +49,18 @@ const (
 	PUSH30 = 0x7d
 	PUSH31 = 0x7e
 	PUSH32 = 0x7f
+	RETURN = 0xF3
 	//...
 ) 
 
 func (op *Opcode) String() string {
 	return Instructions[*op].name
+}
+	
+func (o *Opcode) IsPush() byte {
+	d := *o - PUSH1 
+	if d >= 0 && d < 31 {
+		return byte(d) + 1
+	}
+	return 0
 }

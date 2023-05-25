@@ -26,14 +26,18 @@ func (m *Memory) sb(ost uint64, val byte) {
 	(*m)[ost] = val
 }
 
-// loads 256b word fron offset in memory
-func (m *Memory) ld(ost uint64) []byte {
-	if ost + 32 > uint64(len(*m)) {
+func (m *Memory) ld(ost uint64, n uint64) []byte {
+	if ost + n > uint64(len(*m)) {
 		log.Fatal("trying to load out of memory")
 	}
 
-	r := make([]byte, 32)
-	copy(r, (*m)[ost:ost+32])
+	r := make([]byte, n)
+	copy(r, (*m)[ost:ost+n])
+	return r
+}
+
+func (m *Memory) lw(ost uint64) []byte {
+	r := m.ld(ost, 32)
 	return r
 }
 

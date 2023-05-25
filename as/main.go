@@ -6,7 +6,7 @@ import (
 )
 
 func usage(arg0 string) {
-	fmt.Fprintf(os.Stderr, "usage: %s [-o file] file.easm\n", os.Args[0])
+	fmt.Fprintf(os.Stderr, "usage: %s [-o file] file.easm\n", arg0)
 	os.Exit(1)
 }
 
@@ -20,7 +20,6 @@ func main() {
 	var ain int = 0
 
 	for i := 0; i < len(os.Args); i++ {
-		fmt.Println(os.Args[i])
 		switch os.Args[i] {
 		case "-o": 
 			i = i + 1

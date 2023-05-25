@@ -21,6 +21,12 @@ func main() {
 
 	vm := NewEvm(b)
 
-	vm.Start()
+	returndata := vm.Run()
+	
+	fmt.Printf("finished execution.\n")
+
+	if (returndata != nil) {
+		fmt.Printf("callee returned: %v\n", returndata)
+	}
 }
 
