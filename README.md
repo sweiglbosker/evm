@@ -29,13 +29,13 @@ as
 you can assemble files by specifying the assembly file, and optionally the name of your output binary using the `-o` flag
 
 ```sh
-./as test/add.src -o test/add.bin
+./as/as test/add.easm -o test/add.bin
 ```
 
 if you want to compare the output with something like the `evm` tool from geth, you can use xxd with the `-p` flag
 
 ```sh
-evm compile test/add.src
+evm compile test/add.easm
 xxd -p test/add.bin
 ```
 
